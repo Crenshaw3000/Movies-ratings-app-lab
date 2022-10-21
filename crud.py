@@ -39,9 +39,14 @@ def get_users():
     """Show user email and link profile"""
     return User.query.all()
 
-def get_user_by_email(email):
+def get_user_individual(email):
     return User.query.get(email)
 
+def get_user_by_email(email):
+    return User.query.filter(User.email == email).first()
+
+def check_email_and_pass(email, password):
+    return User.query.filter(User.password == password).first() and User.query.filter(User.email == email).first()
 
 if __name__ == '__main__':
     from server import app
