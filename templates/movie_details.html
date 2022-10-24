@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ movie.title }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ movie.title }}</h1>
+
+<p>
+  {{ movie.overview }}
+</p>
+
+<form action="/movies/{{movie.movie_id}}/rate" method="POST">
+  <label for="user-rating">Add your rating:</label>
+  <select name="score" id="score-select">
+    <option value="">Select Rating</option>
+    <option value="5">5</option>
+    <option value="4">4</option>
+    <option value="3">3</option>
+    <option value="2">2</option>
+    <option value="1">1</option>
+    <option value="0">0</option>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+
+<img src="{{ movie.poster_path }}">
+{% endblock %}
